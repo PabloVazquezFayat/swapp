@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import fetchData from './utils/fetchData';
 
 function App() {
+
+  const [people, setPeople] = useState('');
+
+  useEffect(()=>{
+
+    if(people === ''){
+      fetchData.fetchPeopleData(setPeople);
+    }
+
+  }, [people, setPeople]);
+
+  const createCharacterListItems = ()=> {
+    if(Object.keys(people).length > 0){
+      return people.results.map((character, i)=>{
+        return  <li key={i}>
+                  <p>{character.name}</p>
+                </li>
+      });
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>{createCharacterListItems()}</ul>
     </div>
   );
 }
