@@ -1,32 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
-import fetchData from './utils/fetchData';
+import './App.css'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
+import Home from './components/Home/Home'
 
 function App() {
-
-  const [people, setPeople] = useState('');
-
-  useEffect(()=>{
-
-    if(people === ''){
-      fetchData.fetchPeopleData(setPeople);
-    }
-
-  }, [people, setPeople]);
-
-  const createCharacterListItems = ()=> {
-    if(Object.keys(people).length > 0){
-      return people.results.map((character, i)=>{
-        return  <li key={i}>
-                  <p>{character.name}</p>
-                </li>
-      });
-    }
-  }
-
   return (
     <div className="App">
-      <ul>{createCharacterListItems()}</ul>
+      <Router>
+        <Switch>
+          <Route exact path='/' render={()=> <Home/>} />
+        </Switch>
+      </Router>
     </div>
   );
 }
