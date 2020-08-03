@@ -9,7 +9,7 @@ export default function Home() {
     useEffect(()=>{
         if(data === ''){
             fetchData.fetchAllData(setData);
-            console.log(data);
+            // console.log(data);
         }
     }, [data, setData]);
 
