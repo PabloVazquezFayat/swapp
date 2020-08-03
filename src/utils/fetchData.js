@@ -24,7 +24,7 @@ export default {
             cb(mappedData);
 
         }catch(error){
-            errorHandler.fetchAllDataFallback(error);
+            cb(errorHandler(error));
         }
     },
     fetchPeopleData: async (cb)=> {
@@ -32,7 +32,7 @@ export default {
             const people = await axios.get('https://swapi.dev/api/people');
             cb(people.data);
         }catch(error){
-            errorHandler.fetchPeopleDataFallback(error);
+            cb(errorHandler(error));
         }
     },
     fetchPeopleDataByID: async (cb, id)=> {
@@ -40,7 +40,7 @@ export default {
             const person = await axios.get(`https://swapi.dev/api/people/${id}`);
             cb(person.data);
         }catch(error){
-            cb(errorHandler.fetchPeopleDataByIDfallback(error));
+            cb(errorHandler(error));
         }
     },
     fetchPlanetsData: async (cb)=> {
@@ -48,7 +48,7 @@ export default {
             const planets = await axios.get('http://swapi.dev/api/planets');
             cb(planets.data);
         }catch(error){
-            errorHandler.fetchPlanetsDataFallback(error);
+            cb(errorHandler(error));
         }
     },
     fetchPlanetDataByID: async (cb, id)=> {
@@ -56,7 +56,7 @@ export default {
             const planet = await axios.get(`https://swapi.dev/api/planets/${id}`);
             cb(planet.data);
         }catch(error){
-            console.log(error);
+            cb(errorHandler(error));
         }
     },
     fetchSpeciesData: async (cb)=> {
@@ -64,7 +64,7 @@ export default {
             const species = await axios.get('http://swapi.dev/api/species');
             cb(species.data);
         }catch(error){
-            errorHandler.fetchSpeciesDataFallback(error);
+            cb(errorHandler(error));
         }
     },
     fetchStarshipsData: async (cb)=> {
@@ -72,7 +72,7 @@ export default {
             const starships = await axios.get('http://swapi.dev/api/starships');
             cb(starships.data);
         }catch(error){
-            errorHandler.fetchStarshipsDataFallback(error);
+            cb(errorHandler(error));
         }
     },
     fetchVehiclesData: async (cb)=> {
@@ -80,7 +80,7 @@ export default {
             const vehicles = await axios.get('http://swapi.dev/api/vehicles');
             cb(vehicles.data);
         }catch(error){
-            errorHandler.fetchVehiclesDataFallback(error);
+            cb(errorHandler(error));
         }
     },
 }

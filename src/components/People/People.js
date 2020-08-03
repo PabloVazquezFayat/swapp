@@ -12,11 +12,11 @@ export default function People(props) {
     }, [data, setData]);
 
     const createPerson = ()=> {
-        if(Object.keys(data).length > 0 && data.status === false){
+        if(Object.keys(data).length > 0 && data.status === undefined){
             return  <div>
                         <p>{data.name}</p>
                     </div>
-        }else if(data.status === true){
+        }else if(data.status === false){
             return data.page
         }else{
             return <p>Loading...</p>
