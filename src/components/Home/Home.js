@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import fetchData from '../../utils/fetchData'
-import List from '../List/List'
+import CategoryList from '../CategoryList/CategoryList'
 
 export default function Home() {
 
@@ -9,13 +9,12 @@ export default function Home() {
     useEffect(()=>{
         if(data === ''){
             fetchData.fetchAllData(setData);
-            // console.log(data);
         }
     }, [data, setData]);
 
     return (
         <div>
-            <List data={data} />
+            <CategoryList data={data} />
         </div>
     )
 }

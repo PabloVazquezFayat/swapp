@@ -35,12 +35,28 @@ export default {
             errorHandler.fetchPeopleDataFallback(error);
         }
     },
+    fetchPeopleDataByID: async (cb, id)=> {
+        try{
+            const person = await axios.get(`https://swapi.dev/api/people/${id}`);
+            cb(person.data);
+        }catch(error){
+            cb(errorHandler.fetchPeopleDataByIDfallback(error));
+        }
+    },
     fetchPlanetsData: async (cb)=> {
         try{
             const planets = await axios.get('http://swapi.dev/api/planets');
             cb(planets.data);
         }catch(error){
             errorHandler.fetchPlanetsDataFallback(error);
+        }
+    },
+    fetchPlanetDataByID: async (cb, id)=> {
+        try{
+            const planet = await axios.get(`https://swapi.dev/api/planets/${id}`);
+            cb(planet.data);
+        }catch(error){
+            console.log(error);
         }
     },
     fetchSpeciesData: async (cb)=> {
