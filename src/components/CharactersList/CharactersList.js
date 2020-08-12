@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import fetchData from '../../utils/fetchData'
-import CharactersListItem from '../CharactersListItem/CharactersListItem'
+import ListItem from '../ListItem/ListItem'
 
-export default function PeopleList() {
+export default function CharactersList() {
 
     const [characters, setCharacters] = useState('');
 
@@ -15,7 +15,7 @@ export default function PeopleList() {
     const createCharaterList = ()=> {
         if(Object.keys(characters).length > 0){
             return characters.map((data, i)=> {
-                return <CharactersListItem key={i} data={data}/>
+                return <ListItem key={i} data={data} link='characters'/>
             });
         }else{
             return <li>Loading...</li>

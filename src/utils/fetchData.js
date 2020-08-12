@@ -15,7 +15,6 @@ export default {
 
             const mappedData = data.map((data)=>{
                 return {
-                    title: data.data[0].name,
                     category: data.config.url.split('/')[4],
                 };
             });
@@ -26,10 +25,10 @@ export default {
             cb(errorHandler(error));
         }
     },
+
     fetchCharacterData: async (cb, page)=> {
         try{
             const characters = await axios.get(`http://localhost:4000/api/characters/read/${page}`);
-            console.log(characters.data);
             cb(characters.data);
         }catch(error){
             cb(errorHandler(error));
@@ -37,12 +36,13 @@ export default {
     },
     fetchCharacterDataByID: async (cb, id)=> {
         try{
-            const person = await axios.get(`http://localhost:4000/api/characters/${id}`);
-            cb(person.data);
+            const character = await axios.get(`http://localhost:4000/api/characters/${id}`);
+            cb(character.data);
         }catch(error){
             cb(errorHandler(error));
         }
     },
+
     fetchPlanetsData: async (cb, page)=> {
         try{
             const planets = await axios.get(`http://localhost:4000/api/planets/read/${page}`);
@@ -59,6 +59,7 @@ export default {
             cb(errorHandler(error));
         }
     },
+
     fetchSpeciesData: async (cb, page)=> {
         try{
             const species = await axios.get(`http://localhost:4000/api/species/read/${page}`);
@@ -67,14 +68,32 @@ export default {
             cb(errorHandler(error));
         }
     },
+    fetchSpeciesDataByID: async (cb, id)=> {
+        try{
+            const species = await axios.get(`http://localhost:4000/api/species/${id}`);
+            cb(species.data);
+        }catch(error){
+            cb(errorHandler(error));
+        }
+    },
+
     fetchStarshipsData: async (cb, page)=> {
         try{
-            const starships = await axios.get(`http://localhost:4000/api/vehicles/starships/${page}`);
+            const starships = await axios.get(`http://localhost:4000/api/starships/read/${page}`);
             cb(starships.data);
         }catch(error){
             cb(errorHandler(error));
         }
     },
+    fetchStarshipsDataByID: async (cb, id)=> {
+        try{
+            const starship = await axios.get(`http://localhost:4000/api/starships/${id}`);
+            cb(starship.data);
+        }catch(error){
+            cb(errorHandler(error));
+        }
+    },
+
     fetchVehiclesData: async (cb, page)=> {
         try{
             const vehicles = await axios.get(`http://localhost:4000/api/vehicles/read/${page}`);
@@ -83,4 +102,12 @@ export default {
             cb(errorHandler(error));
         }
     },
+    fetchVehiclesDataByID: async (cb, id)=> {
+        try{
+            const vehicle = await axios.get(`http://localhost:4000/api/vehicles/${id}`);
+            cb(vehicle.data);
+        }catch(error){
+            cb(errorHandler(error));
+        }
+    }
 }
