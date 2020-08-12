@@ -3,12 +3,11 @@ import {NavLink} from 'react-router-dom'
 
 export default function ListItem(props) {
 
-    const {category, count} = props.data;
+    const {_id, name} = props.data;
 
     return (
         <li>
-            <NavLink to={`/${category}`}>{category}</NavLink>
-            <p>{count}</p>
+            <NavLink to={`/${_id}`}>{name}</NavLink>
         </li>
     )
 }

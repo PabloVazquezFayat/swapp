@@ -6,18 +6,17 @@ export default {
         try{
 
             const data = await axios.all([
-                axios.get('https://swapi.dev/api/people'),
-                axios.get('https://swapi.dev/api/planets'),
-                axios.get('https://swapi.dev/api/species'),
-                axios.get('https://swapi.dev/api/starships'),
-                axios.get('https://swapi.dev/api/vehicles'),
+                axios.get('http://localhost:4000/api/characters/read/1'),
+                axios.get('http://localhost:4000/api/planets/read/1'),
+                axios.get('http://localhost:4000/api/species/read/1'),
+                axios.get('http://localhost:4000/api/starships/read/1'),
+                axios.get('http://localhost:4000/api/vehicles/read/1'),
             ]);
 
             const mappedData = data.map((data)=>{
                 return {
-                    title: data.data.results[0].name,
+                    title: data.data[0].name,
                     category: data.config.url.split('/')[4],
-                    count: data.data.count
                 };
             });
 
@@ -27,25 +26,26 @@ export default {
             cb(errorHandler(error));
         }
     },
-    fetchPeopleData: async (cb)=> {
+    fetchCharacterData: async (cb, page)=> {
         try{
-            const people = await axios.get('https://swapi.dev/api/people');
-            cb(people.data);
+            const characters = await axios.get(`http://localhost:4000/api/characters/read/${page}`);
+            console.log(characters.data);
+            cb(characters.data);
         }catch(error){
             cb(errorHandler(error));
         }
     },
-    fetchPeopleDataByID: async (cb, id)=> {
+    fetchCharacterDataByID: async (cb, id)=> {
         try{
-            const person = await axios.get(`https://swapi.dev/api/people/${id}`);
+            const person = await axios.get(`http://localhost:4000/api/characters/${id}`);
             cb(person.data);
         }catch(error){
             cb(errorHandler(error));
         }
     },
-    fetchPlanetsData: async (cb)=> {
+    fetchPlanetsData: async (cb, page)=> {
         try{
-            const planets = await axios.get('http://swapi.dev/api/planets');
+            const planets = await axios.get(`http://localhost:4000/api/planets/read/${page}`);
             cb(planets.data);
         }catch(error){
             cb(errorHandler(error));
@@ -53,31 +53,31 @@ export default {
     },
     fetchPlanetDataByID: async (cb, id)=> {
         try{
-            const planet = await axios.get(`https://swapi.dev/api/planets/${id}`);
+            const planet = await axios.get(`http://localhost:4000/api/planets/${id}`);
             cb(planet.data);
         }catch(error){
             cb(errorHandler(error));
         }
     },
-    fetchSpeciesData: async (cb)=> {
+    fetchSpeciesData: async (cb, page)=> {
         try{
-            const species = await axios.get('http://swapi.dev/api/species');
+            const species = await axios.get(`http://localhost:4000/api/species/read/${page}`);
             cb(species.data);
         }catch(error){
             cb(errorHandler(error));
         }
     },
-    fetchStarshipsData: async (cb)=> {
+    fetchStarshipsData: async (cb, page)=> {
         try{
-            const starships = await axios.get('http://swapi.dev/api/starships');
+            const starships = await axios.get(`http://localhost:4000/api/vehicles/starships/${page}`);
             cb(starships.data);
         }catch(error){
             cb(errorHandler(error));
         }
     },
-    fetchVehiclesData: async (cb)=> {
+    fetchVehiclesData: async (cb, page)=> {
         try{
-            const vehicles = await axios.get('http://swapi.dev/api/vehicles');
+            const vehicles = await axios.get(`http://localhost:4000/api/vehicles/read/${page}`);
             cb(vehicles.data);
         }catch(error){
             cb(errorHandler(error));

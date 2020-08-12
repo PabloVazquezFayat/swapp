@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom'
 
 export default function PeopleListItem(props) {
 
-    const {name, url} = props.data;
+    const {name, _id} = props.data;
 
     return (
         <li>
-            <NavLink to={`/people/${url.split('/')[5]}`}>{name}</NavLink>
+            <NavLink to={`/characters/${_id}`}>{name}</NavLink>
         </li>
     )
 }
