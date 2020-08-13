@@ -15,6 +15,7 @@ export default {
 
             const mappedData = data.map((data)=>{
                 return {
+                    imageURL: data.imageURL,
                     category: data.config.url.split('/')[4],
                 };
             });
