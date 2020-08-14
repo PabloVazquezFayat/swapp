@@ -68,6 +68,14 @@ export default {
             cb(errorHandler(error));
         }
     },
+    updatePlanetData: async (cb, data)=> {
+        try{
+            await axios.post('http://localhost:4000/api/planets/update', data);
+            cb('');
+        }catch(error){
+            cb(errorHandler(error));
+        }
+    },
 
     fetchSpeciesData: async (cb, page)=> {
         try{
@@ -81,6 +89,14 @@ export default {
         try{
             const species = await axios.get(`http://localhost:4000/api/species/${id}`);
             cb(species.data);
+        }catch(error){
+            cb(errorHandler(error));
+        }
+    },
+    updateSpeciesData: async (cb, data)=> {
+        try{
+            await axios.post('http://localhost:4000/api/species/update', data);
+            cb('');
         }catch(error){
             cb(errorHandler(error));
         }
@@ -102,6 +118,15 @@ export default {
             cb(errorHandler(error));
         }
     },
+    updateStarshipsData: async (cb, data)=> {
+        try{
+            await axios.post('http://localhost:4000/api/starships/update', data);
+            cb('');
+        }catch(error){
+            cb(errorHandler(error));
+        }
+    },
+
 
     fetchVehiclesData: async (cb, page)=> {
         try{
@@ -118,5 +143,13 @@ export default {
         }catch(error){
             cb(errorHandler(error));
         }
-    }
+    },
+    updateVehiclesData: async (cb, data)=> {
+        try{
+            await axios.post('http://localhost:4000/api/vehicles/update', data);
+            cb('');
+        }catch(error){
+            cb(errorHandler(error));
+        }
+    },
 }

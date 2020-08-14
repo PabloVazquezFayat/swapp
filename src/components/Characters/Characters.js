@@ -20,6 +20,7 @@ export default function Characters(props) {
     }
 
     const createCharater = ()=> {
+        console.log(typeof data.imageURL);
         if(Object.keys(data).length > 0 && data.status === undefined){
             return  <div>
                         <div>
@@ -27,7 +28,12 @@ export default function Characters(props) {
                             <input type='text' onChange={(e)=> setPropertyData({name: e.target.value})} placeholder={data.name}></input>
                             <button onClick={editPropery}>save</button>
                         </div>
-                        <img src={data.imageURL !== undefined ? data.imageURL : '/imgs/man.png' } alt=''></img>
+
+                        <div>
+                            
+                        </div>
+
+                        <img src={data.imageURL ? data.imageURL : '/imgs/man.png' } alt=''></img>
                     </div>
         }else if(data.status === false){
             return data.page
