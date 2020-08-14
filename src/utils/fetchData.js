@@ -43,6 +43,14 @@ export default {
             cb(errorHandler(error));
         }
     },
+    updateCharacterData: async (cb, data)=> {
+        try{
+            await axios.put('http://localhost:4000/api/characters/update', data);
+            cb('');
+        }catch(error){
+            cb(errorHandler(error))
+        }
+    },
 
     fetchPlanetsData: async (cb, page)=> {
         try{

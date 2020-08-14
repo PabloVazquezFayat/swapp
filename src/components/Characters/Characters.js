@@ -4,6 +4,7 @@ import fetchData from '../../utils/fetchData'
 export default function Characters(props) {
 
     const [data, setData] = useState('');
+    const [propertyData, setPropertyData] = useState({});
 
     useEffect(()=>{
         if(data === ''){
@@ -11,10 +12,21 @@ export default function Characters(props) {
         }       
     }, [data, setData]);
 
+    const editPropery = ()=> {
+        data[Object.keys(propertyData)] = propertyData[Object.keys(propertyData)];
+        data.id = data._id;
+        fetchData.updateCharacterData(setData, data);
+    }
+
     const createCharater = ()=> {
         if(Object.keys(data).length > 0 && data.status === undefined){
             return  <div>
-                        <p>{data.name}</p>
+                        <div>
+                            <p>{data.name}</p>
+                            <input type='text' onChange={(e)=> setPropertyData({name: e.target.value})} placeholder={data.name}></input>
+                            <button onClick={editPropery}>save</button>
+                        </div>
+                        <img src={data.imageURL !== undefined ? data.imageURL : '/imgs/man.png' } alt=''></img>
                     </div>
         }else if(data.status === false){
             return data.page
