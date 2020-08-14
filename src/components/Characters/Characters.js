@@ -15,6 +15,7 @@ export default function Characters(props) {
     const editPropery = ()=> {
         data[Object.keys(propertyData)] = propertyData[Object.keys(propertyData)];
         data.id = data._id;
+        delete data._id;
         fetchData.updateCharacterData(setData, data);
     }
 
