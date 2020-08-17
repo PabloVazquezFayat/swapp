@@ -139,9 +139,9 @@ export default {
     fetchVehiclesDataByID: async (id)=> {
         try{
             const vehicle = await axios.get(`http://localhost:4000/api/vehicles/${id}`);
-            cb(vehicle.data);
+            return vehicle.data;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
     updateVehiclesData: async (data)=> {
