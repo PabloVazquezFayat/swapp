@@ -6,21 +6,26 @@ export default function Characters(props) {
     const [data, setData] = useState('');
     const [propertyData, setPropertyData] = useState({});
 
-    useEffect(()=>{
+    const getData = async ()=> {
         if(data === ''){
-            fetchData.fetchCharacterDataByID(setData, window.location.href.split('/')[4]);
-        }       
-    }, [data, setData]);
+            const results = await fetchData.fetchCharacterDataByID(window.location.href.split('/')[4]);
+            setData(results)
+        }  
+    }
+
+    useEffect(()=>{
+        getData();
+    });
 
     const editPropery = ()=> {
         data[Object.keys(propertyData)] = propertyData[Object.keys(propertyData)];
         data.id = data._id;
         delete data._id;
-        fetchData.updateCharacterData(setData, data);
+        fetchData.updateCharacterData(data);
+        setData('');
     }
 
     const createCharater = ()=> {
-        console.log(typeof data.imageURL);
         if(Object.keys(data).length > 0 && data.status === undefined){
             return  <div>
                         <div>

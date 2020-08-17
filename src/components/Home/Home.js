@@ -6,11 +6,16 @@ export default function Home() {
 
     const [data, setData] = useState('');
 
-    useEffect(()=>{
+    const getData = async ()=> {
         if(data === ''){
-            fetchData.fetchAllData(setData);
+            const results = await fetchData.fetchAllData();
+            setData(results);
         }
-    }, [data, setData]);
+    }
+
+    useEffect(()=>{
+        getData();
+    });
 
     return (
         <div>

@@ -2,7 +2,7 @@ import axios from "axios";
 import errorHandler from './fetchErrorHandler';
 
 export default {
-    fetchAllData: async (cb)=> {
+    fetchAllData: async ()=> {
         try{
 
             const data = await axios.all([
@@ -20,35 +20,35 @@ export default {
                 };
             });
 
-            cb(mappedData);
+            return mappedData;
 
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
 
-    fetchCharacterData: async (cb, page)=> {
+    fetchCharacterData: async (page)=> {
         try{
             const characters = await axios.get(`http://localhost:4000/api/characters/read/${page}`);
-            cb(characters.data);
+            return characters.data
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
-    fetchCharacterDataByID: async (cb, id)=> {
+    fetchCharacterDataByID: async (id)=> {
         try{
             const character = await axios.get(`http://localhost:4000/api/characters/${id}`);
-            cb(character.data);
+            return character.data;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
-    updateCharacterData: async (cb, data)=> {
+    updateCharacterData: async (data)=> {
         try{
             await axios.put('http://localhost:4000/api/characters/update', data);
-            cb('');
+            return;
         }catch(error){
-            cb(errorHandler(error))
+            return errorHandler(error);
         }
     },
 

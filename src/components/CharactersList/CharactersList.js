@@ -6,11 +6,16 @@ export default function CharactersList() {
 
     const [characters, setCharacters] = useState('');
 
-    useEffect(()=> {
+    const getData = async ()=> {
         if(characters === ''){
-            fetchData.fetchCharacterData(setCharacters, "1");
+            const results = await fetchData.fetchCharacterData("1");
+            setCharacters(results);
         }
-    }, [characters, setCharacters]);
+    }
+
+    useEffect(()=> {
+        getData();
+    });
 
     const createCharaterList = ()=> {
         if(Object.keys(characters).length > 0){
