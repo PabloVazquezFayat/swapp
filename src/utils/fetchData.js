@@ -52,91 +52,91 @@ export default {
         }
     },
 
-    fetchPlanetsData: async (cb, page)=> {
+    fetchPlanetsData: async (page)=> {
         try{
             const planets = await axios.get(`http://localhost:4000/api/planets/read/${page}`);
-            cb(planets.data);
+            return planets.data;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
-    fetchPlanetDataByID: async (cb, id)=> {
+    fetchPlanetDataByID: async (id)=> {
         try{
             const planet = await axios.get(`http://localhost:4000/api/planets/${id}`);
-            cb(planet.data);
+            return planet.data;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
-    updatePlanetData: async (cb, data)=> {
+    updatePlanetData: async (data)=> {
         try{
             await axios.post('http://localhost:4000/api/planets/update', data);
-            cb('');
+            return;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
 
-    fetchSpeciesData: async (cb, page)=> {
+    fetchSpeciesData: async (page)=> {
         try{
             const species = await axios.get(`http://localhost:4000/api/species/read/${page}`);
-            cb(species.data);
+            return species.data;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
-    fetchSpeciesDataByID: async (cb, id)=> {
+    fetchSpeciesDataByID: async (id)=> {
         try{
             const species = await axios.get(`http://localhost:4000/api/species/${id}`);
-            cb(species.data);
+            return species.data;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
-    updateSpeciesData: async (cb, data)=> {
+    updateSpeciesData: async (data)=> {
         try{
             await axios.post('http://localhost:4000/api/species/update', data);
-            cb('');
+            return;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
 
-    fetchStarshipsData: async (cb, page)=> {
+    fetchStarshipsData: async (page)=> {
         try{
             const starships = await axios.get(`http://localhost:4000/api/starships/read/${page}`);
-            cb(starships.data);
+            return starships.data;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
-    fetchStarshipsDataByID: async (cb, id)=> {
+    fetchStarshipsDataByID: async (id)=> {
         try{
             const starship = await axios.get(`http://localhost:4000/api/starships/${id}`);
-            cb(starship.data);
+            return starship.data;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
-    updateStarshipsData: async (cb, data)=> {
+    updateStarshipsData: async (data)=> {
         try{
             await axios.post('http://localhost:4000/api/starships/update', data);
-            cb('');
+            return 
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
 
 
-    fetchVehiclesData: async (cb, page)=> {
+    fetchVehiclesData: async (page)=> {
         try{
             const vehicles = await axios.get(`http://localhost:4000/api/vehicles/read/${page}`);
-            cb(vehicles.data);
+            return vehicles.data;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
-    fetchVehiclesDataByID: async (cb, id)=> {
+    fetchVehiclesDataByID: async (id)=> {
         try{
             const vehicle = await axios.get(`http://localhost:4000/api/vehicles/${id}`);
             cb(vehicle.data);
@@ -144,12 +144,12 @@ export default {
             cb(errorHandler(error));
         }
     },
-    updateVehiclesData: async (cb, data)=> {
+    updateVehiclesData: async (data)=> {
         try{
             await axios.post('http://localhost:4000/api/vehicles/update', data);
-            cb('');
+            return;
         }catch(error){
-            cb(errorHandler(error));
+            return errorHandler(error);
         }
     },
 }
