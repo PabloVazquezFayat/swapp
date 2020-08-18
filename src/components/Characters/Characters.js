@@ -18,11 +18,17 @@ export default function Characters(props) {
     });
 
     const editPropery = ()=> {
-        data[Object.keys(propertyData)] = propertyData[Object.keys(propertyData)];
-        data.id = data._id;
-        delete data._id;
-        fetchData.updateCharacterData(data);
-        setData('');
+        console.log(data[Object.keys(propertyData)[0]]);
+        if(data[Object.keys(propertyData)] !== undefined){
+            data[Object.keys(propertyData)[0]] = propertyData[Object.keys(propertyData)];
+            data.id = data._id;
+            delete data._id;
+            fetchData.updateCharacterData(data);
+            setData('');
+            setPropertyData({});
+        }else{
+            console.log('nothing to save')
+        }
     }
 
     const createCharater = ()=> {
