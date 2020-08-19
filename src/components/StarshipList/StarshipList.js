@@ -6,17 +6,24 @@ export default function SpeciesList() {
 
     const [starships, setStarships] = useState('');
 
-    useEffect(()=> {
+    const getData = async ()=> {
         if(starships === ''){
-            fetchData.fetchStarshipsData(setStarships, "1");
+            const data = await fetchData.fetchStarshipsData("1");
+            setStarships(data);
         }
-    }, [starships, setStarships]);
+    }
+
+    useEffect(()=> {
+        getData();
+    });
 
     const createStarshipList = ()=> {
-        if(Object.keys(starships).length > 0){
+        if(Object.keys(starships).length > 0 && starships.status === undefined){
             return starships.map((result, i)=> {
                 return <ListItem key={i} data={result} link='starships'/>
             });
+        }else if(starships.status === false){
+            return starships.page;
         }else{
             return <li>Loading...</li>
         }
