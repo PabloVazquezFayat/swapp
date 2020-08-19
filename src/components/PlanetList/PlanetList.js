@@ -6,17 +6,24 @@ export default function PlanetList() {
 
     const [planets, setPlanets] = useState('');
 
-    useEffect(()=> {
+    const getData = async ()=> {
         if(planets === ''){
-            fetchData.fetchPlanetsData(setPlanets, "1");
+            const data = await fetchData.fetchPlanetsData("1");
+            setPlanets(data);
         }
-    }, [planets, setPlanets]);
+    }
+
+    useEffect(()=> {
+        getData();
+    });
 
     const createPlanetsList = ()=> {
-        if(Object.keys(planets).length > 0){
+        if(Object.keys(planets).length > 0 && planets.status === undefined){
             return planets.map((result, i)=> {
                 return <ListItem key={i} data={result} link='planets'/>
             });
+        }else if(planets.status === false){
+            return planets.page;
         }else{
             return <li>Loading...</li>
         }

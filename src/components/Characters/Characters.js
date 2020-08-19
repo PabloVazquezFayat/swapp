@@ -18,7 +18,6 @@ export default function Characters(props) {
     });
 
     const editPropery = ()=> {
-        console.log(data[Object.keys(propertyData)[0]]);
         if(data[Object.keys(propertyData)] !== undefined){
             data[Object.keys(propertyData)[0]] = propertyData[Object.keys(propertyData)];
             data.id = data._id;
