@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import fetchData from '../../utils/fetchData'
 
-export default function Characters(props) {
+export default function Characters() {
 
     const [data, setData] = useState('');
     const [propertyData, setPropertyData] = useState({});
@@ -15,19 +15,31 @@ export default function Characters(props) {
 
     useEffect(()=>{
         getData();
-    });
+    }, []);
 
-    const editPropery = ()=> {
-        if(data[Object.keys(propertyData)] !== undefined){
-            data[Object.keys(propertyData)[0]] = propertyData[Object.keys(propertyData)];
-            data.id = data._id;
-            delete data._id;
-            fetchData.updateCharacterData(data);
-            setData('');
-            setPropertyData({});
-        }else{
-            console.log('nothing to save')
-        }
+    const editPropery = async ()=> {
+
+        const newData = {...data};
+        newData.name = propertyData.name;
+        console.log(newData);
+
+        const res = await fetchData.updateCharacterData(newData);
+        console.log(res);
+        setData(res);
+        
+        console.log(data);
+
+        // if(data[Object.keys(propertyData)] !== undefined){
+        //     data[Object.keys(propertyData)[0]] = propertyData[Object.keys(propertyData)];
+        //     console.log(data);
+        //     data.id = data._id;
+        //     delete data._id;
+        //     const res = await fetchData.updateCharacterData(data);
+        //     setData(res);
+        //     setPropertyData({});
+        // }else{
+        //     console.log('nothing to save')
+        // }
     }
 
     const createCharater = ()=> {
