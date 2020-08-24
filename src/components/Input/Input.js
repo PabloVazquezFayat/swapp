@@ -18,7 +18,7 @@ export default function Input(props) {
             propertyData[Object.keys(propertyData)[0]] !== newData[Object.keys(propertyData)[0]]
         ){
             newData[Object.keys(propertyData)[0]] = propertyData[Object.keys(propertyData)];
-            const res = await fetchData.updateCharacterData(newData);
+            const res = await fetchData[props.endpoint](newData);
             props.cb(res);
             setAlert({status: false, newValue: false});
         }else if(
@@ -36,7 +36,6 @@ export default function Input(props) {
 
     return (
         <div>
-            <p>{props.data.name}</p>
             <input type='text' onChange={(e)=> setPropertyData({[props.propertyName]: e.target.value})} placeholder={props.data.name}></input>
             <button onClick={editPropery}>save</button>
             {alert.status === true && alert.newValue === true? <Alert message={`please enter a valid value`}/> : null}

@@ -70,7 +70,7 @@ export default {
     },
     updatePlanetData: async (data)=> {
         try{
-            const response = await axios.post('http://localhost:4000/api/planets/update', data);
+            const response = await axios.put('http://localhost:4000/api/planets/update', data);
             return response.data;
         }catch(error){
             return errorHandler(error);
@@ -95,7 +95,7 @@ export default {
     },
     updateSpeciesData: async (data)=> {
         try{
-            const response = await axios.post('http://localhost:4000/api/species/update', data);
+            const response = await axios.put('http://localhost:4000/api/species/update', data);
             return response.data;
         }catch(error){
             return errorHandler(error);
@@ -120,7 +120,7 @@ export default {
     },
     updateStarshipsData: async (data)=> {
         try{
-            const response = await axios.post('http://localhost:4000/api/starships/update', data);
+            const response = await axios.put('http://localhost:4000/api/starships/update', data);
             return response.data;
         }catch(error){
             return errorHandler(error);
@@ -146,7 +146,7 @@ export default {
     },
     updateVehiclesData: async (data)=> {
         try{
-            const response = await axios.post('http://localhost:4000/api/vehicles/update', data);
+            const response = await axios.put('http://localhost:4000/api/vehicles/update', data);
             return response.data;
         }catch(error){
             return errorHandler(error);

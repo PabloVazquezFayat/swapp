@@ -20,7 +20,8 @@ export default function Characters() {
     const createCharater = ()=> {
         if(Object.keys(data).length > 0 && data.status === undefined){
             return  <div>
-                        <Input data={{...data}} cb={setData} propertyName="name"/>
+                        <p>{data.name}</p>
+                        <Input data={{...data}} cb={setData} propertyName="name" endpoint="updateCharacterData"/>
                         <img src={data.imageURL ? data.imageURL : '/imgs/man.png' } alt=''></img>
                     </div>
         }else if(data.status === false){

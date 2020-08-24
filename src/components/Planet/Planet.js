@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import fetchData from '../../utils/fetchData'
+import Input from '../../components/Input/Input'
 
 export default function Planet() {
 
@@ -14,12 +15,13 @@ export default function Planet() {
 
     useEffect(()=>{
         getData();     
-    });
+    }, []);
 
     const createPlanet = ()=> {
         if(Object.keys(data).length > 0 && data.status === undefined){
             return  <div>
                         <p>{data.name}</p>
+                        <Input data={{...data}} cb={setData} propertyName="name" endpoint="updatePlanetData"/>
                     </div>
         }else if(data.status === false){
             return data.page;
