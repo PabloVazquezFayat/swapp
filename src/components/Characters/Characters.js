@@ -29,28 +29,19 @@ export default function Characters() {
             propertyData[Object.keys(propertyData)[0]].length > 0 &&
             propertyData[Object.keys(propertyData)[0]] !== newData[Object.keys(propertyData)[0]]
         ){
-
             newData[Object.keys(propertyData)[0]] = propertyData[Object.keys(propertyData)];
-
             const res = await fetchData.updateCharacterData(newData);
-
             setData(res);
-
             setAlert({status: false, newValue: false});
-
         }else if(
             Object.keys(propertyData).length !== 0 && 
             propertyData[Object.keys(propertyData)[0]] !== undefined && 
             propertyData[Object.keys(propertyData)[0]].length > 0 &&
             propertyData[Object.keys(propertyData)[0]] === newData[Object.keys(propertyData)[0]]
         ){
-
             setAlert({status: true, newValue: false});
-
         }else{
-
             setAlert({status: true, newValue: true});
-
         }
 
     }
