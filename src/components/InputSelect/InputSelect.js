@@ -3,8 +3,6 @@ import fetchData from '../../utils/fetchData'
 
 export default function InputSelect(props) {
 
-    console.log(props.data);
-
     const [options, setOptions] = useState('');
     const [propertyData, setPropertyData] = useState({});
 

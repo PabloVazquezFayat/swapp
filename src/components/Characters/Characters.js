@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import fetchData from '../../utils/fetchData'
 import Input from '../Input/Input'
 import InputSelect from '../InputSelect/InputSelect'
+import InputSelectMultiple from '../InputSelectMultiple/InputSelectMultiple'
+import InputSelectMultipleLabel from '../InputSelectMultipleLabel/InputSelectMultipleLabel'
 
 export default function Characters() {
 
@@ -26,6 +28,13 @@ export default function Characters() {
 
                         <p>{data.homeWorld.name ? data.homeWorld.name : 'Homeworld unknown'}</p>
                         <InputSelect data={{...data}} cb={setData} propertyName="homeWorld" endpoints={{options: 'fetchPlanetsData', update: 'updateCharacterData'}}/>
+
+                        
+                        <InputSelectMultipleLabel data={{...data}} propertyName="starship" message="No starships found" />
+                        <InputSelectMultiple data={{...data}} cb={setData} propertyName="starship" endpoints={{options: 'fetchStarshipsData', update: 'updateCharacterData'}} />
+
+                        <InputSelectMultipleLabel data={{...data}} propertyName="vehicles" message="No vehicles found" />
+                        <InputSelectMultiple data={{...data}} cb={setData} propertyName="vehicles" endpoints={{options: 'fetchVehiclesData', update: 'updateCharacterData'}} />
 
                         <img src={data.imageURL ? data.imageURL : '/imgs/man.png' } alt=''></img>
                     </div>
