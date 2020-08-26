@@ -33,8 +33,7 @@ export default function InputSelectMultiple(props) {
     const updateData = async()=> {
         newData[props.propertyName] = values;
         const response = await fetchData[props.endpoints.update](newData);
-        props.cb(response); 
-        console.log(response);
+        props.cb(response);
     }
 
     const createOptions = ()=> {
@@ -42,7 +41,11 @@ export default function InputSelectMultiple(props) {
             return options.map((opt, i)=>{
                 return  <li key={i}>
                             <label>{opt.name}</label>
-                            <input type='checkbox' value={opt._id} checked={values.indexOf(opt._id) !== -1 ? true : false} onChange={(e)=> updateValues(e.target.value, e.target.checked)}/>
+                            <input 
+                                type='checkbox' 
+                                value={opt._id} checked={values.indexOf(opt._id) !== -1 ? true : false} 
+                                onChange={(e)=> updateValues(e.target.value, e.target.checked)}
+                            />
                         </li>
             });
         }else if(options.status === false){

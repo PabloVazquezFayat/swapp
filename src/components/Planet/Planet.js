@@ -15,7 +15,7 @@ export default function Planet() {
 
     useEffect(()=>{
         getData();     
-    }, []);
+    });
 
     const createPlanet = ()=> {
         if(Object.keys(data).length > 0 && data.status === undefined){

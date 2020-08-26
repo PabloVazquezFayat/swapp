@@ -15,7 +15,7 @@ export default function InputSelect(props) {
 
     useEffect(()=> {
         getData();
-    }, []);
+    });
 
     const createInputSelect = ()=> {
         if(options){

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import fetchData from '../../utils/fetchData'
 import Input from '../Input/Input'
 import InputSelect from '../InputSelect/InputSelect'
+import InputLabel from '../InputLabel/InputLabel'
 import InputSelectMultiple from '../InputSelectMultiple/InputSelectMultiple'
 import InputSelectMultipleLabel from '../InputSelectMultipleLabel/InputSelectMultipleLabel'
 
@@ -18,7 +19,7 @@ export default function Characters() {
 
     useEffect(()=>{
         getData();
-    }, []);
+    });
 
     const createCharater = ()=> {
         if(Object.keys(data).length > 0 && data.status === undefined){
@@ -26,10 +27,9 @@ export default function Characters() {
                         <p>{data.name}</p>
                         <Input data={{...data}} cb={setData} propertyName="name" endpoint="updateCharacterData"/>
 
-                        <p>{data.homeWorld.name ? data.homeWorld.name : 'Homeworld unknown'}</p>
+                        <InputLabel data={{...data}} propertyName='homeWorld' propertySubName='name' message="Homeworld unknown" />
                         <InputSelect data={{...data}} cb={setData} propertyName="homeWorld" endpoints={{options: 'fetchPlanetsData', update: 'updateCharacterData'}}/>
 
-                        
                         <InputSelectMultipleLabel data={{...data}} propertyName="starship" message="No starships found" />
                         <InputSelectMultiple data={{...data}} cb={setData} propertyName="starship" endpoints={{options: 'fetchStarshipsData', update: 'updateCharacterData'}} />
 
