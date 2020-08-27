@@ -24,10 +24,10 @@ export default function Characters() {
     const createCharater = ()=> {
         if(Object.keys(data).length > 0 && data.status === undefined){
             return  <div>
-                        <p>{data.name}</p>
+                        <InputLabel>{data.name ? data.name : undefined}</InputLabel>
                         <Input data={{...data}} cb={setData} propertyName="name" endpoint="updateCharacterData"/>
 
-                        <InputLabel data={{...data}} propertyName='homeWorld' propertySubName='name' message="Homeworld unknown" />
+                        <InputLabel>{data.homeWorld ? data.homeWorld.name : undefined}</InputLabel>
                         <InputSelect data={{...data}} cb={setData} propertyName="homeWorld" endpoints={{options: 'fetchPlanetsData', update: 'updateCharacterData'}}/>
 
                         <InputSelectMultipleLabel data={{...data}} propertyName="starship" message="No starships found" />
