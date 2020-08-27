@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import fetchData from '../../utils/fetchData'
 import ListItem from '../ListItem/ListItem'
+import PaginationController from '../PaginationController/PaginationController'
 
 export default function SpeciesList() {
 
     const [starships, setStarships] = useState('');
+    const [page, setPage] = useState('1');
+    const count = starships.count;
 
     const getData = async ()=> {
         if(starships === ''){
@@ -19,7 +22,7 @@ export default function SpeciesList() {
 
     const createStarshipList = ()=> {
         if(Object.keys(starships).length > 0 && starships.status === undefined){
-            return starships.map((result, i)=> {
+            return starships.data.map((result, i)=> {
                 return <ListItem key={i} data={result} link='starships'/>
             });
         }else if(starships.status === false){
@@ -32,6 +35,7 @@ export default function SpeciesList() {
     return (
         <ul>
            {createStarshipList()} 
+           <PaginationController cb={{setData:setStarships, setPage: setPage}} page={page} count={count} endpoint='fetchStarshipsData'/>
         </ul>
     )
 }

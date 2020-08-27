@@ -22,7 +22,7 @@ export default function CharactersList() {
 
     const createCharaterList = ()=> {
         if(Object.keys(characters).length > 0 && characters.status === undefined){
-            return characters.characters.map((data, i)=> {
+            return characters.data.map((data, i)=> {
                 return <ListItem key={i} data={data} link='characters'/>
             });
         }else if(characters.status === false){
@@ -35,7 +35,7 @@ export default function CharactersList() {
     return (
         <ul>
            {createCharaterList()}
-           <PaginationController cb={{setCharacters, setPage}} page={page} count={count}/>
+           <PaginationController cb={{setData:setCharacters, setPage: setPage}} page={page} count={count} endpoint='fetchCharacterData'/>
         </ul>
     )
 }

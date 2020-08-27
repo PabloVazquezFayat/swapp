@@ -3,25 +3,24 @@ import fetchData from '../../utils/fetchData'
 
 export default function PaginationController(props) {
 
-    const {setCharacters, setPage} = props.cb;
     const {page, count} = props;
 
     const paginate = async (direction)=> {
 
         if(direction === 'next' && parseInt(page) < Math.ceil(count/10)){
             const newPage = parseInt(page) + 1;
-            const results = await fetchData.fetchCharacterData(newPage.toString());
+            const results = await fetchData[props.endpoint](newPage.toString());
 
-            setCharacters(results);
-            setPage(newPage.toString());
+            props.cb.setData(results);
+            props.cb.setPage(newPage.toString());
         }
 
         if(direction === 'prev' && parseInt(page) >= 2){
             const newPage = parseInt(page) - 1;
-            const results = await fetchData.fetchCharacterData(newPage.toString());
+            const results = await fetchData[props.endpoint](newPage.toString());
 
-            setCharacters(results);
-            setPage(newPage.toString());
+            props.cb.setData(results);
+            props.cb.setPage(newPage.toString());
         }
 
     }

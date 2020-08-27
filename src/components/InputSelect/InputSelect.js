@@ -9,7 +9,7 @@ export default function InputSelect(props) {
     const getData = async ()=> {
         if(options === ''){
             const response = await fetchData[props.endpoints.options]();
-            setOptions(response);
+            setOptions(response.data);
         }
     }
 
