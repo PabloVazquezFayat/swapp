@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import fetchData from '../../utils/fetchData'
+import PaginationController from '../PaginationController/PaginationController'
 
 export default function InputSelectMultiple(props) {
 
     const newData = {...props.data};
     const [options, setOptions] = useState('');
-    const [values, setValues] = useState(newData[props.propertyName].map((data)=> data._id))
+    const [values, setValues] = useState(newData[props.propertyName].map((data)=> data._id));
+    const [page, setPage] = useState('1');
+    const count = options.count;
 
     const getData = async ()=> {
         if(options === ''){
             const response = await fetchData[props.endpoints.options]();
-            setOptions(response.data);
+            setOptions(response);
         }
     }
 
@@ -38,7 +41,7 @@ export default function InputSelectMultiple(props) {
 
     const createOptions = ()=> {
         if(options !== '' && options.status === undefined){
-            return options.map((opt, i)=>{
+            return options.data.map((opt, i)=>{
                 return  <li key={i}>
                             <label>{opt.name}</label>
                             <input 
@@ -60,6 +63,7 @@ export default function InputSelectMultiple(props) {
             <ul>
                 {createOptions()}
             </ul>
+            <PaginationController cb={{setData:setOptions, setPage: setPage}} page={page} count={count} endpoint={props.endpoints.options}/>
             <button onClick={updateData}>save</button>
         </div>
     )
