@@ -1,5 +1,6 @@
 import React from 'react'
 import fetchData from '../../utils/fetchData'
+import {Link} from 'react-router-dom'
 
 export default function PaginationController(props) {
 
@@ -27,6 +28,8 @@ export default function PaginationController(props) {
 
     return (
         <div>
+            {/* <Link onClick={()=> paginate('prev')} to={{ pathname: "/characters", search: `?page=${page}` }}>prev</Link>
+            <Link onClick={()=> paginate('next')} to={{ pathname: "/characters", search: `?page=${page}` }}>next</Link> */}
             <button onClick={()=> paginate('prev')}>prev</button>
             <button onClick={()=> paginate('next')}>next</button>
             <div>{`${page} of ${Math.ceil(count/10)}`}</div>   
