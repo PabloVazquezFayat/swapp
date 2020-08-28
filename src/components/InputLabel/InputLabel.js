@@ -5,8 +5,8 @@ export default function InputLabel(props) {
         <div>
             { 
                 props.children !== null && props.children !== undefined 
-                ? props.children 
-                : 'No value found'
+                ? `${props.propertyName}: ${props.children}`
+                : `${props.propertyName}: No value found`
             }
         </div>
     )

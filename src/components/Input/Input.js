@@ -36,7 +36,7 @@ export default function Input(props) {
 
     return (
         <div>
-            <input type='text' onChange={(e)=> setPropertyData({[props.propertyName]: e.target.value})} placeholder={props.data.name}></input>
+            <input type='text' onChange={(e)=> setPropertyData({[props.propertyName]: e.target.value})} placeholder={props.data[props.propertyName]}></input>
             <button onClick={editPropery}>save</button>
             {alert.status === true && alert.newValue === true? <Alert message={`please enter a VALID value`}/> : null}
             {alert.status === true && alert.newValue === false ? <Alert message={`please enter a NEW value`}/> : null}
