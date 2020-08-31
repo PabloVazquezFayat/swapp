@@ -43,6 +43,14 @@ export default {
             return errorHandler(error);
         }
     },
+    createCharacter: async (data)=> {
+        try{
+            const response = await axios.post('http://localhost:4000/api/characters/create', data);
+            return response.data;
+        }catch(error){
+            return errorHandler(error)
+        }
+    },
     updateCharacterData: async (data)=> {
         try{
             const response = await axios.put('http://localhost:4000/api/characters/update', data);
