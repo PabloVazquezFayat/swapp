@@ -43,7 +43,7 @@ export default {
             return errorHandler(error);
         }
     },
-    createCharacter: async (data)=> {
+    createCharacterData: async (data)=> {
         try{
             const response = await axios.post('http://localhost:4000/api/characters/create', data);
             return response.data;
@@ -76,6 +76,14 @@ export default {
             return errorHandler(error);
         }
     },
+    createPlanetData: async (data)=> {
+        try{
+            const response = await axios.post('http://localhost:4000/api/planets/create', data);
+            return response.data;
+        }catch(error){
+            return errorHandler(error);
+        }
+    },
     updatePlanetData: async (data)=> {
         try{
             const response = await axios.put('http://localhost:4000/api/planets/update', data);
@@ -101,6 +109,15 @@ export default {
             return errorHandler(error);
         }
     },
+    createSpeciesData: async (data)=> {
+        try{
+            const response = await  axios.post('http://localhost:4000/api/species/create', data);
+            return response.data;
+        }catch(error){
+            return errorHandler(error);
+        }
+    }
+    ,
     updateSpeciesData: async (data)=> {
         try{
             const response = await axios.put('http://localhost:4000/api/species/update', data);
@@ -126,6 +143,14 @@ export default {
             return errorHandler(error);
         }
     },
+    createStarshipsData: async (data)=> {
+        try{ 
+            const response = await axios.post('http://localhost:4000/api/starships/create', data);
+            return response.data;
+        }catch(error){
+            return errorHandler(error)
+        }
+    },
     updateStarshipsData: async (data)=> {
         try{
             const response = await axios.put('http://localhost:4000/api/starships/update', data);
@@ -148,6 +173,14 @@ export default {
         try{
             const vehicle = await axios.get(`http://localhost:4000/api/vehicles/${id}`);
             return vehicle.data;
+        }catch(error){
+            return errorHandler(error);
+        }
+    },
+    createVehicleData: async (data)=> {
+        try{
+            const response = await axios.post('http://localhost:4000/api/vehicles/create', data);
+            return response.data;
         }catch(error){
             return errorHandler(error);
         }
