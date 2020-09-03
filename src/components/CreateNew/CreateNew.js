@@ -14,6 +14,14 @@ export default function CreateNew(props) {
 
     const createInputs = ()=> {
         // this will need a property name
+        if(props.inputs && props.inputs.length > 0){
+            return  props.inputs.map((input, i)=> {
+                return  <div>
+                            <InputLabel propertyName={input.propertyName}>{input.propertyName}</InputLabel>
+                            <Input data={{...data}} cb={setData} propertyName="name" endpoint="updateCharacterData"/>
+                        </div>
+            })
+        }
     }
 
     const createOptions = ()=> {
@@ -52,20 +60,7 @@ export default function CreateNew(props) {
 
     return (
         <div>
-            <InputLabel propertyName='Name'>{data.name ? data.name : undefined}</InputLabel>
-            <Input data={{...data}} cb={setData} propertyName="name" endpoint="updateCharacterData"/>
-
-            <InputLabel propertyName='Homeworld'>{data.homeWorld ? data.homeWorld.name : undefined}</InputLabel>
-            <InputSelect data={{...data}} cb={setData} propertyName="homeWorld" endpoints={{options: 'fetchPlanetsData', update: 'updateCharacterData'}} default='Select Planet'/>
-
-            <InputLabel propertyName='Species'>{data.species ? data.species.name : undefined}</InputLabel>
-            <InputSelect data={{...data}} cb={setData} propertyName="species" endpoints={{options: 'fetchSpeciesData', update: 'updateCharacterData'}} default='Select Species'/>
-
-            <InputSelectMultipleLabel data={{...data}} propertyName="starship" message="No starships found" />
-            <InputSelectMultiple data={{...data}} cb={setData} propertyName="starship" endpoints={{options: 'fetchStarshipsData', update: 'updateCharacterData'}} />
-
-            <InputSelectMultipleLabel data={{...data}} propertyName="vehicles" message="No vehicles found" />
-            <InputSelectMultiple data={{...data}} cb={setData} propertyName="vehicles" endpoints={{options: 'fetchVehiclesData', update: 'updateCharacterData'}} />
+            
         </div>
     )
 }
