@@ -143,7 +143,7 @@ export default {
             return errorHandler(error);
         }
     },
-    createStarshipsData: async (data)=> {
+    createStarshipData: async (data)=> {
         try{ 
             const response = await axios.post('http://localhost:4000/api/starships/create', data);
             return response.data;

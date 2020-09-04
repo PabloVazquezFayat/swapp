@@ -48,7 +48,7 @@ export default function InputSelect(props) {
                 {createInputSelect()}
             </select>
             <PaginationController cb={{setData:setOptions, setPage: setPage}} page={page} count={count} endpoint={props.endpoints.options}/>
-            <button onClick={editProperty}>save</button>
+            {props.save && props.save !== false ? <button onClick={editProperty}>save</button>: null}
         </div>
     )
 }

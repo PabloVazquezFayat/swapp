@@ -64,7 +64,7 @@ export default function InputSelectMultiple(props) {
                 {createOptions()}
             </ul>
             <PaginationController cb={{setData:setOptions, setPage: setPage}} page={page} count={count} endpoint={props.endpoints.options}/>
-            <button onClick={updateData}>save</button>
+            {props.save && props.save !== false ? <button onClick={updateData}>save</button> : null}
         </div>
     )
 }
