@@ -15,6 +15,7 @@ import VehicleList from './components/VehicleList/VehicleList'
 import Vehicle from './components/Vehicle/Vehicle'
 
 import PageNotFound from './components/PageNotFound/PageNotFound'
+import Creator from './components/Creator/Creator'
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
         <Switch>
           
           <Route exact path='/' render={()=> <Home/>} />
+
+          <Route exact path='/creator' render={()=> <Creator/>}/>
 
           <Route exact path='/characters' render={()=> <CharactersList/>} />
           <Route exact path='/characters/:id' render={()=> <Characters/>} />

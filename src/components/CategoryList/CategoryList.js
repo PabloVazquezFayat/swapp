@@ -1,5 +1,6 @@
 import React from 'react'
 import CategoryListItem from '../CategoryListItem/CategoryListItem'
+import {NavLink} from 'react-router-dom'
 
 export default function List(props) {
   
@@ -20,6 +21,7 @@ export default function List(props) {
     return (
         <ul>
             {createListItems()}
+            <NavLink to='/creator'>Create new</NavLink>
         </ul>
     )
 }
